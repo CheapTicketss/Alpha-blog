@@ -7,7 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  
+   <ul>
+<% # this is how to display the notice after an article is created %>
+<% flash.each do |name, msg| %>     
+     <li> <%= msg %> </li>
+   </ul>
+  <% end %>
+  
 <%= yield %>
 
 </body>

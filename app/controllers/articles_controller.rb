@@ -1,5 +1,8 @@
 class ArticlesController < ApplicationController 
+   
+  def index
     
+  end
 
   def new 
     @article = Article.new
@@ -7,12 +10,22 @@ class ArticlesController < ApplicationController
   end 
  
   def create 
+    @article = Article.new(article_params)              
     
-    @article = Article.new(artcile_params)
-    @article.save
-    redirect_to articles_show(@article)
- 
+    if @article.save
+      flash[:notice] = "Article was successfully saved"
+      redirect_to articles_path(@article)
+    else
+      
+      render 'new'     #can also write as :new
+    end
   end
+  
+  def show 
+    
+    @article = Article.find(params[:id])
+    
+  end 
   
   
   private 
